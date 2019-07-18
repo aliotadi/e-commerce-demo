@@ -25,7 +25,11 @@ class SignUp extends React.Component {
     if (password !== confirmPassword) return alert("password doesn't match");
 
     try {
-      const { user } = auth.createUserWithEmailAndPassword(email, password);
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+
       await createUserProfileDocument(user, { displayName });
       this.setState({
         displayName: '',
@@ -55,7 +59,7 @@ class SignUp extends React.Component {
             name="displayName"
             value={displayName}
             onChange={this.handleChange}
-            lable="Display Name"
+            label="Display Name"
             required
           />
           <FormInput
@@ -63,7 +67,7 @@ class SignUp extends React.Component {
             name="email"
             value={email}
             onChange={this.handleChange}
-            lable="Email"
+            label="Email"
             required
           />
           <FormInput
@@ -71,7 +75,7 @@ class SignUp extends React.Component {
             name="password"
             value={password}
             onChange={this.handleChange}
-            lable="Password"
+            label="Password"
             required
           />
           <FormInput
@@ -79,7 +83,7 @@ class SignUp extends React.Component {
             name="confirmPassword"
             value={confirmPassword}
             onChange={this.handleChange}
-            lable="Confirm Password"
+            label="Confirm Password"
             required
           />
 
@@ -89,3 +93,5 @@ class SignUp extends React.Component {
     );
   }
 }
+
+export default SignUp;
